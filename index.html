@@ -252,7 +252,7 @@ tasks:{title:'专项检查',requirement:'按翼企安任务中心现有口径统
 taskCenter:{title:'任务中心',requirement:'按翼企安报表中心现有任务中心汇总检查任务，并同步调整隐患相关查询、列表及导出字段。',fields:[['现有任务字段','保留任务、计划、公司、检查、审批及整改等现有字段。'],['任务来源','新增 CTSC 下发或翼企安下发，位于计划编号之后。'],['现场隐患描述','原“隐患描述”改名，表示检查人填写的现场事实。'],['隐患大类/小类','原“隐患类型”拆分为两个列表字段。'],['风险等级','核实人员人工选择的隐患等级。'],['隐患标准条目','新增标准定性内容，与现场隐患描述分开展示。'],['整改字段','保留整改人、要求整改时间、整改方案和整改时间。']],steps:['从报表中心下的“任务中心”子菜单进入。','按任务编号或任务名称搜索，重置清空条件。','勾选任务后导出选中数据，或导出全部任务。','列表和导出同步增加任务来源、隐患大小类和隐患标准条目。','历史任务无标准条目时展示为空，不自动回填。']},
 governance:{title:'隐患治理',requirement:'汇总检查过程中发现的隐患及规则生成的重大隐患整改任务，并沿用翼企安核实、整改、审核和归档闭环。',fields:[['隐患编号','隐患记录或规则生成整改任务的唯一编号。'],['隐患来源','专项检查、日常检查、随手拍、设备检查或规则生成。'],['计划/任务编号','追溯隐患对应的检查计划和原检查任务。'],['统计口径','规则生成整改任务为“不参与统计”，原始隐患正常参与统计。'],['现场隐患描述','提交人记录的现场事实，核实过程中只读且不得覆盖。'],['风险等级/隐患标准条目','固定模板按 V4 标准人工选择的单条隐患定性结果。'],['整改时间字段','包括要求完成、实际整改、复核和归档时间。']],steps:['按隐患编号或任务名称查询。','规则生成任务关联原检查任务和触发规则的6条及以上一般隐患（较大）。','原始隐患分别完成整改和审核。','所有关联隐患闭环后，规则生成任务自动闭环。','规则生成任务不进入数量、等级、闭环率等任何统计。']},
 governanceDetail:{title:'隐患详情',requirement:'展示隐患内容、核实、整改和审批全过程。核实情况需分别展示现场事实和 V4 标准定性结果。',fields:[['现场隐患描述','隐患提交人录入的现场事实。'],['隐患大类','核实时选择的隐患一级分类。'],['隐患小类','核实时选择的大类下细分类别。'],['风险等级','核实人员人工选择的重大隐患、一般隐患（较大）或一般隐患（普通）。'],['隐患标准条目','当前分类及等级下选择的标准定性内容。'],['整改安排','要求整改完成时间、整改人和整改措施。']],steps:['从隐患治理列表点击“详情”进入。','隐患内容保留现场隐患描述和照片。','隐患核实情况展示大类、小类、风险等级和隐患标准条目。','分段查看整改记录和审批记录。','点击返回回到隐患治理列表。']},
-mapping:{title:'标准匹配',requirement:'维护电信 V4 隐患标准与翼企安供应链标准的对应关系，确保 CTSC 原始隐患完成治理后仍按供应链原统计口径汇总。',fields:[['电信隐患大类/小类','来源于电信 V4 标准。'],['风险等级','重大隐患、一般隐患（较大）或一般隐患（普通）。'],['隐患标准条目','电信风险等级对应的具体判定内容。'],['翼企安隐患大类','该电信隐患映射到的供应链统计分类。'],['状态','已绑定表示已完成匹配，待维护表示尚未选择。']],steps:['按关键字、电信隐患大类或风险等级筛选。','新增匹配时选择电信隐患并绑定供应链分类。','可修改现有匹配关系或删除错误关系。','未完成匹配的数据不进入供应链分类统计。','规则生成重大隐患整改任务不参与标准映射和数据统计。']},
+mapping:{title:'标准匹配',requirement:'由用户选择任意两套已启用的隐患类型，并逐条维护来源隐患标准条目与目标隐患标准条目的对应关系。',fields:[['来源/目标隐患类型','选择隐患类型页面中用户维护的标准 Tab，来源与目标不能相同。'],['隐患大类/小类','分别根据来源和目标隐患类型进行级联定位。'],['风险等级','根据各自隐患类型配置的风险等级分类加载。'],['来源/目标隐患标准条目','匹配关系以标准条目 ID 为准，列表保留内容快照用于追溯。'],['状态','已绑定表示来源条目已完成目标条目匹配。'],['更新信息','记录更新人和更新时间。']],steps:['按来源、目标隐患类型及来源分类条件筛选。','点击“新增匹配”打开条目级匹配弹窗。','两侧均按隐患类型、大类、小类、风险等级和标准条目逐级选择。','同一来源条目只能建立一条关系，重复时通过编辑修改目标。','删除匹配关系不删除两侧隐患标准条目。']},
 mobile:{title:'移动端页面',requirement:'展示任务从检查、核实、整改到审核的移动端业务流转，并执行 V4 等级对应的整改时间和任务级联动规则。',fields:[['任务来源','显示 CTSC 下发或翼企安下发。'],['检查内容/指引','来自当前任务使用的检查模板。'],['隐患标准范围','项目绑定优先；检查项目未绑定时使用模板默认的“执行的隐患标准”。'],['现场隐患描述','发现隐患时由检查人自由填写的原始事实。'],['核实定性字段','隐患大类、风险等级必填；隐患小类、隐患标准条目仅固定模板必填。'],['要求整改完成时间','选择一般隐患（较大）自动带出6个月，选择一般隐患（普通）自动带出1个月；重大隐患由用户选择。'],['联动整改任务','同一检查任务累计6条及以上一般隐患（较大）时自动生成，关联隐患全部闭环后自动闭环且不参与统计。'],['现场留痕','隐患及整改后的照片或视频。']],steps:['在“任务检查”选择检查结果并填写现场隐患描述。','固定模板任务的隐患小类、隐患标准条目必填；非固定模板任务这两项可留空。','检查项目已绑定时仅展示绑定隐患；未绑定时展示模板执行标准下的可用隐患。','选择风险等级后自动带出对应最晚整改日期；重大隐患明确提示立即停工，并保留原整改流程操作权限。','同一检查任务达到6条一般隐患（较大）时生成重大隐患整改任务。','关联隐患全部审核闭环后，规则生成任务自动闭环且不进入统计。']},
 impact:{title:'改造影响',requirement:'汇总本次隐患标准改造对翼企安现有页面、字段、接口、导出、台账报表和统计口径的影响，作为开发与测试同步调整清单。',fields:[['P0','主流程、数据模型或接口必须同步修改，否则业务无法闭环或数据会混淆。'],['P1','查询、展示、导出、报表和统计需同步适配。'],['现场隐患描述','用户填写的现场事实，保留现有字段兼容但统一调整展示语义。'],['隐患标准条目','新增标准条目 ID 与文本快照，支持标准版本追溯。']],steps:['按页签逐项确认页面改动。','开发完成后勾对字段、接口、导出和统计清单。','使用 CTSC 固定模板和翼企安原有模板分别回归。','核对历史数据不被新标准内容覆盖。']}
 };
@@ -654,7 +654,6 @@ function updateHazardMapping(key,value){hazardMappingTargets[key]=value;renderMa
 function editHazardMapping(mappingId){const select=document.getElementById('hazardMappingSelect'+mappingId);if(select){select.focus();select.click()}}
 function deleteHazardMapping(key){if(!confirm('确认删除这条匹配关系？电信隐患标准仍会保留。'))return;hazardMappingTargets[key]='';renderMappings();toast('匹配关系已删除')}
 function resetHazardMappings(){['mappingSearch','mappingSourceCategory','mappingLevel'].forEach(id=>{const element=document.getElementById(id);if(element)element.value=''});hazardMappingPage=1;renderMappings()}
-openMappingModal=function(){const row=hazardMappingRows().find(x=>!x.targetCategory);if(!row){toast('分类二的隐患标准均已建立匹配关系');return}hazardMappingPage=Math.ceil(row.mappingId/hazardMappingPageSize);renderMappings();setTimeout(()=>editHazardMapping(row.mappingId),0)};
 const mappingCategorySelect=document.getElementById('mappingSourceCategory');
 mappingCategorySelect.innerHTML='<option value="">全部大类</option>'+telecomCategories.map(category=>`<option value="${esc(category)}">${esc(category)}</option>`).join('');
 const saveStandardBeforeHazardTabs=saveStandard;
@@ -714,6 +713,152 @@ renderTemplates=function(q=''){document.getElementById('templateCards').innerHTM
 renderHazardStandardTabs();
 syncTemplateHazardStandardOptions();
 switchHazardTab('one');
+</script><style>
+.item-mapping-page{background:#eef3f0}.item-mapping-filter{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}.item-mapping-filter .field{flex:0 1 180px}.item-mapping-filter .item-keyword{flex:1 1 270px}.item-mapping-table{min-width:2780px;table-layout:fixed}.item-mapping-table th,.item-mapping-table td{vertical-align:top;line-height:1.6;word-break:break-word}.item-mapping-table .mapping-item-text{white-space:normal}.item-mapping-table .mapping-direction{color:#409eff;text-align:center;font-size:18px}.item-mapping-table button{border:0;background:transparent;color:#409eff;padding:0 6px}.item-mapping-table button.danger{color:#f56c6c}.item-mapping-mask{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,21,41,.38);z-index:70}.item-mapping-mask.open{display:flex}.item-mapping-editor{width:min(1160px,100%);max-height:92vh;display:flex;flex-direction:column;background:#fff;border-radius:4px;box-shadow:0 18px 55px rgba(0,0,0,.24)}.item-mapping-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #ebeef5}.item-mapping-head h3{margin:0;color:#303133;font-size:17px}.item-mapping-close{width:30px;height:30px;border:0;background:transparent;color:#909399;font-size:22px}.item-mapping-body{min-height:0;overflow:auto;padding:20px 22px}.item-mapping-columns{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);gap:18px;align-items:start}.item-mapping-side h4{display:flex;align-items:center;gap:8px;margin:0 0 17px;color:#303133;font-size:15px}.item-mapping-side h4:before{content:'';width:4px;height:16px;border-radius:2px;background:#409eff}.item-mapping-arrow{display:flex;align-items:center;justify-content:center;min-height:340px;color:#409eff;font-size:28px}.item-mapping-field{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;align-items:start;margin-bottom:14px}.item-mapping-field label{padding-top:8px;color:#606266;font-size:13px}.item-mapping-field label:before{content:'*';margin-right:4px;color:#f56c6c}.item-mapping-control{display:grid;gap:7px}.item-mapping-control input,.item-mapping-control select{width:100%;height:34px;border:1px solid #dcdfe6;border-radius:4px;padding:0 10px;background:#fff;color:#303133}.item-mapping-control input:focus,.item-mapping-control select:focus{outline:2px solid rgba(64,158,255,.14);border-color:#409eff}.item-mapping-control select:disabled,.item-mapping-control input:disabled{cursor:not-allowed;background:#f5f7fa;color:#c0c4cc}.item-mapping-preview{min-height:54px;padding:9px 10px;border:1px solid #ebeef5;border-radius:4px;background:#f8f9fb;color:#606266;font-size:12px;line-height:1.65;white-space:pre-wrap}.item-mapping-preview.empty{color:#c0c4cc}.item-mapping-actions{display:flex;justify-content:flex-end;gap:10px;padding:14px 22px 18px;border-top:1px solid #ebeef5}.item-mapping-actions button{height:32px;min-width:64px;border:1px solid #dcdfe6;border-radius:4px;background:#fff;color:#606266}.item-mapping-actions .primary{border-color:#409eff;background:#409eff;color:#fff}@media(max-width:900px){.item-mapping-columns{grid-template-columns:1fr}.item-mapping-arrow{min-height:auto;transform:rotate(90deg)}.item-mapping-field{grid-template-columns:1fr}.item-mapping-field label{padding-top:0}}
+</style><script>
+let mappingItemSequence=1;
+let mappingRecordSequence=1;
+let itemMappingPage=1;
+const itemMappingPageSize=10;
+const itemMappingRecords=[];
+let itemMappingEditingId=null;
+
+function mappingSetName(setId){return hazardStandardSetById(setId)?.name||'-'}
+function mappingStableItemId(setId,row,index){
+ if(setId==='two')return `TELECOM-${row.id}-${row.field}-${row.index}`;
+ if(!row.mappingItemId)row.mappingItemId=`${String(setId).toUpperCase()}-ITEM-${String(mappingItemSequence++).padStart(4,'0')}`;
+ return row.mappingItemId
+}
+function mappingItemsForSet(setId){
+ const set=hazardStandardSetById(setId);
+ if(!set)return[];
+ const rows=setId==='one'?yqaHazardRows:setId==='two'?telecomHazardRows().filter(row=>!row.draft):(set.rows||[]);
+ return rows.map((row,index)=>({...row,itemId:mappingStableItemId(setId,row,index),setId,setName:set.name}))
+}
+function mappingItemById(setId,itemId){return mappingItemsForSet(setId).find(item=>item.itemId===itemId)}
+function mappingLevelForScheme(level,scheme){
+ const major=level==='重大'||level===LEVEL_MAJOR,larger=level==='较大'||level===LEVEL_LARGER;
+ if(scheme==='v4')return major?LEVEL_MAJOR:larger?LEVEL_LARGER:LEVEL_ORDINARY;
+ return major?'重大':larger?'较大':'一般'
+}
+function mappingSuggestedTarget(source,targetSetId){
+ const targetSet=hazardStandardSetById(targetSetId),items=mappingItemsForSet(targetSetId);
+ if(!items.length)return null;
+ const preferredCategory=targetSetId==='one'?inferYqaMappingCategory(source):source.category;
+ const preferredLevel=mappingLevelForScheme(source.level,targetSet?.levelScheme||'classic');
+ return items.find(item=>item.category===preferredCategory&&item.level===preferredLevel)||items.find(item=>item.category===preferredCategory)||items.find(item=>item.level===preferredLevel)||items[0]
+}
+function mappingRecordFromItems(source,target,existing={}){
+ const now=hazardNow();
+ return {id:existing.id||`MAP-${String(mappingRecordSequence++).padStart(4,'0')}`,sourceSetId:source.setId,sourceSetName:source.setName,sourceItemId:source.itemId,sourceCategory:source.category,sourceSub:source.sub||'',sourceLevel:source.level,sourceDescription:source.description,targetSetId:target.setId,targetSetName:target.setName,targetItemId:target.itemId,targetCategory:target.category,targetSub:target.sub||'',targetLevel:target.level,targetDescription:target.description,status:'已绑定',createdBy:existing.createdBy||'admin',createdAt:existing.createdAt||now,updatedBy:'admin',updatedAt:now}
+}
+function seedItemMappings(){
+ if(itemMappingRecords.length)return;
+ mappingItemsForSet('two').forEach(source=>{const target=mappingSuggestedTarget(source,'one');if(target)itemMappingRecords.push(mappingRecordFromItems(source,target))})
+}
+function mappingSelectOptions(id,options,placeholder,preferred=''){
+ const select=document.getElementById(id);if(!select)return;
+ select.innerHTML=`<option value="">${placeholder}</option>`+options.map(option=>`<option value="${esc(option.value)}">${esc(option.label)}</option>`).join('');
+ select.value=options.some(option=>option.value===preferred)?preferred:'';
+ select.disabled=!options.length
+}
+function mappingUniqueOptions(items,key){return [...new Set(items.map(item=>item[key]).filter(Boolean))].map(value=>({value,label:value}))}
+function mappingPrefix(side){return `mapping${side}`}
+function mappingCurrentSet(side){return document.getElementById(mappingPrefix(side)+'Set')?.value||''}
+function mappingPopulateSetOptions(side,preferred=''){
+ const sourceId=side==='Target'?mappingCurrentSet('Source'):'';
+ const options=hazardStandardSets.filter(set=>set.enabled&&set.id!==sourceId).map(set=>({value:set.id,label:set.name}));
+ mappingSelectOptions(mappingPrefix(side)+'Set',options,'请选择隐患类型',preferred)
+}
+function mappingClearBelow(side,field){
+ const fields=['Category','Sub','Level','Item'],index=fields.indexOf(field),prefix=mappingPrefix(side);
+ fields.slice(index+1).forEach(name=>{const element=document.getElementById(prefix+name);if(element)element.value=''});
+ const keyword=document.getElementById(prefix+'ItemKeyword');if(keyword&&field!=='Item')keyword.value=''
+}
+function mappingRefreshItemOptions(side,preferred=''){
+ const prefix=mappingPrefix(side),setId=mappingCurrentSet(side),category=document.getElementById(prefix+'Category').value,sub=document.getElementById(prefix+'Sub').value,level=document.getElementById(prefix+'Level').value,keyword=document.getElementById(prefix+'ItemKeyword').value.trim();
+ const items=mappingItemsForSet(setId).filter(item=>(!category||item.category===category)&&(!sub||item.sub===sub)&&(!level||item.level===level)&&(!keyword||item.description.includes(keyword)));
+ mappingSelectOptions(prefix+'Item',items.map(item=>({value:item.itemId,label:item.description.length>78?item.description.slice(0,78)+'…':item.description})),'请选择隐患标准条目',preferred);
+ mappingRenderItemPreview(side)
+}
+function mappingRefreshSide(side,preferred={}){
+ const prefix=mappingPrefix(side),setId=mappingCurrentSet(side),items=mappingItemsForSet(setId);
+ mappingSelectOptions(prefix+'Category',mappingUniqueOptions(items,'category'),'请选择隐患大类',preferred.category||document.getElementById(prefix+'Category').value);
+ const category=document.getElementById(prefix+'Category').value,categoryItems=items.filter(item=>!category||item.category===category);
+ mappingSelectOptions(prefix+'Sub',mappingUniqueOptions(categoryItems,'sub'),'请选择隐患小类',preferred.sub||document.getElementById(prefix+'Sub').value);
+ const sub=document.getElementById(prefix+'Sub').value,subItems=categoryItems.filter(item=>!sub||item.sub===sub);
+ mappingSelectOptions(prefix+'Level',mappingUniqueOptions(subItems,'level'),'请选择风险等级',preferred.level||document.getElementById(prefix+'Level').value);
+ mappingRefreshItemOptions(side,preferred.itemId||document.getElementById(prefix+'Item').value)
+}
+function mappingCascade(side,field){
+ mappingClearBelow(side,field);
+ if(side==='Source'&&field==='Set')mappingPopulateSetOptions('Target',mappingCurrentSet('Target'));
+ mappingRefreshSide(side)
+}
+function mappingRenderItemPreview(side){
+ const prefix=mappingPrefix(side),item=mappingItemById(mappingCurrentSet(side),document.getElementById(prefix+'Item').value),preview=document.getElementById(prefix+'Preview');
+ preview.textContent=item?.description||'选择条目后展示完整内容';preview.classList.toggle('empty',!item)
+}
+function mappingHydrateSide(side,record){
+ const prefix=mappingPrefix(side),lower=side.toLowerCase(),setId=record[lower+'SetId'];
+ mappingPopulateSetOptions(side,setId);document.getElementById(prefix+'Set').value=setId;
+ mappingRefreshSide(side,{category:record[lower+'Category'],sub:record[lower+'Sub'],level:record[lower+'Level'],itemId:record[lower+'ItemId']})
+}
+function openItemMappingEditor(id=null){
+ itemMappingEditingId=id;const record=id?itemMappingRecords.find(item=>item.id===id):null;
+ document.getElementById('itemMappingEditorTitle').textContent=record?'编辑标准匹配':'新增标准匹配';
+ mappingPopulateSetOptions('Source',record?.sourceSetId||'');
+ if(record)mappingHydrateSide('Source',record);else mappingRefreshSide('Source');
+ mappingPopulateSetOptions('Target',record?.targetSetId||'');
+ if(record)mappingHydrateSide('Target',record);else mappingRefreshSide('Target');
+ document.getElementById('itemMappingMask').classList.add('open')
+}
+function closeItemMappingEditor(){document.getElementById('itemMappingMask').classList.remove('open')}
+function mappingSelectedItem(side){return mappingItemById(mappingCurrentSet(side),document.getElementById(mappingPrefix(side)+'Item').value)}
+function saveItemMapping(){
+ const source=mappingSelectedItem('Source'),target=mappingSelectedItem('Target');
+ if(!source||!target){toast('请完整选择来源和目标隐患标准条目');return}
+ if(source.setId===target.setId){toast('来源隐患类型和目标隐患类型不能相同');return}
+ const duplicate=itemMappingRecords.find(record=>record.sourceSetId===source.setId&&record.sourceItemId===source.itemId&&record.id!==itemMappingEditingId);
+ if(duplicate){toast('该来源隐患标准条目已存在匹配关系，请通过编辑修改');return}
+ const index=itemMappingRecords.findIndex(record=>record.id===itemMappingEditingId),record=mappingRecordFromItems(source,target,index>=0?itemMappingRecords[index]:{});
+ if(index>=0)itemMappingRecords[index]=record;else itemMappingRecords.unshift(record);
+ closeItemMappingEditor();itemMappingPage=1;renderItemMappings();toast(index>=0?'匹配关系已更新':'匹配关系已新增')
+}
+function editItemMapping(id){openItemMappingEditor(id)}
+function deleteItemMapping(id){if(!confirm('确认删除这条标准条目匹配关系？'))return;const index=itemMappingRecords.findIndex(record=>record.id===id);if(index>=0)itemMappingRecords.splice(index,1);renderItemMappings();toast('匹配关系已删除')}
+function syncItemMappingFilters(){
+ const sourceSet=document.getElementById('mappingFilterSourceSet'),targetSet=document.getElementById('mappingFilterTargetSet'),sourceCurrent=sourceSet.value,targetCurrent=targetSet.value,sets=hazardStandardSets.filter(set=>set.enabled).map(set=>({value:set.id,label:set.name}));
+ mappingSelectOptions('mappingFilterSourceSet',sets,'全部隐患类型',sourceCurrent);mappingSelectOptions('mappingFilterTargetSet',sets,'全部隐患类型',targetCurrent);
+ const items=mappingItemsForSet(sourceSet.value),category=document.getElementById('mappingFilterCategory'),level=document.getElementById('mappingFilterLevel'),categoryCurrent=category.value,levelCurrent=level.value;
+ mappingSelectOptions('mappingFilterCategory',mappingUniqueOptions(items,'category'),'全部大类',categoryCurrent);mappingSelectOptions('mappingFilterLevel',mappingUniqueOptions(items,'level'),'全部等级',levelCurrent)
+}
+function filteredItemMappings(){
+ syncItemMappingFilters();const sourceSet=document.getElementById('mappingFilterSourceSet').value,targetSet=document.getElementById('mappingFilterTargetSet').value,category=document.getElementById('mappingFilterCategory').value,sub=document.getElementById('mappingFilterSub').value.trim(),level=document.getElementById('mappingFilterLevel').value,keyword=document.getElementById('mappingFilterItem').value.trim(),status=document.getElementById('mappingFilterStatus').value;
+ return itemMappingRecords.filter(record=>(!sourceSet||record.sourceSetId===sourceSet)&&(!targetSet||record.targetSetId===targetSet)&&(!category||record.sourceCategory===category)&&(!sub||record.sourceSub.includes(sub))&&(!level||record.sourceLevel===level)&&(!keyword||`${record.sourceDescription} ${record.targetDescription}`.includes(keyword))&&(!status||record.status===status))
+}
+function setItemMappingPage(page){itemMappingPage=page;renderItemMappings()}
+function renderItemMappingPager(total,pages){
+ const start=Math.max(1,itemMappingPage-2),end=Math.min(pages,itemMappingPage+2);let buttons='';for(let page=start;page<=end;page++)buttons+=`<button class="${page===itemMappingPage?'active':''}" onclick="setItemMappingPage(${page})">${page}</button>`;
+ document.getElementById('itemMappingPager').innerHTML=`<span class="total">共 ${total} 条</span><button ${itemMappingPage<=1?'disabled':''} onclick="setItemMappingPage(${itemMappingPage-1})">‹</button>${buttons}<button ${itemMappingPage>=pages?'disabled':''} onclick="setItemMappingPage(${itemMappingPage+1})">›</button>`
+}
+function renderItemMappings(resetPage=false){
+ if(resetPage)itemMappingPage=1;const rows=filteredItemMappings(),pages=Math.max(1,Math.ceil(rows.length/itemMappingPageSize));itemMappingPage=Math.min(Math.max(1,itemMappingPage),pages);const start=(itemMappingPage-1)*itemMappingPageSize,pageRows=rows.slice(start,start+itemMappingPageSize);
+ document.getElementById('itemMappingTable').innerHTML=pageRows.map((record,index)=>`<tr><td>${start+index+1}</td><td>${esc(record.sourceSetName)}</td><td>${esc(record.sourceCategory)}</td><td>${esc(record.sourceSub||'-')}</td><td><span class="hazard-level ${hazardLevelClass(record.sourceLevel)}">${esc(record.sourceLevel)}</span></td><td class="mapping-item-text">${esc(record.sourceDescription)}</td><td class="mapping-direction">→</td><td>${esc(record.targetSetName)}</td><td>${esc(record.targetCategory)}</td><td>${esc(record.targetSub||'-')}</td><td><span class="hazard-level ${hazardLevelClass(record.targetLevel)}">${esc(record.targetLevel)}</span></td><td class="mapping-item-text">${esc(record.targetDescription)}</td><td><span class="chip green">${esc(record.status)}</span></td><td>${esc(record.updatedBy)}</td><td>${esc(record.updatedAt)}</td><td><button onclick="editItemMapping('${record.id}')">编辑</button><button class="danger" onclick="deleteItemMapping('${record.id}')">删除</button></td></tr>`).join('')||'<tr><td colspan="16" class="hazard-empty">暂无匹配数据</td></tr>';
+ renderItemMappingPager(rows.length,pages)
+}
+function resetItemMappingFilters(){['mappingFilterSourceSet','mappingFilterTargetSet','mappingFilterCategory','mappingFilterSub','mappingFilterLevel','mappingFilterItem','mappingFilterStatus'].forEach(id=>{const element=document.getElementById(id);if(element)element.value=''});itemMappingPage=1;renderItemMappings()}
+function initializeItemMappingPage(){
+ const page=document.getElementById('mapping');
+ page.classList.add('item-mapping-page');
+ page.innerHTML=`<div class="page-head"><div><h2>标准匹配</h2></div><button class="btn primary" onclick="openItemMappingEditor()">＋ 新增匹配</button></div><div class="panel"><div class="item-mapping-filter"><div class="field"><label>来源隐患类型</label><select class="select" id="mappingFilterSourceSet" onchange="renderItemMappings(true)"></select></div><div class="field"><label>目标隐患类型</label><select class="select" id="mappingFilterTargetSet" onchange="renderItemMappings(true)"></select></div><div class="field"><label>来源隐患大类</label><select class="select" id="mappingFilterCategory" onchange="renderItemMappings(true)"></select></div><div class="field"><label>来源隐患小类</label><input class="input" id="mappingFilterSub" placeholder="请输入隐患小类" oninput="renderItemMappings(true)"></div><div class="field"><label>来源风险等级</label><select class="select" id="mappingFilterLevel" onchange="renderItemMappings(true)"></select></div><div class="field item-keyword"><label>隐患标准条目</label><input class="input" id="mappingFilterItem" placeholder="请输入来源或目标条目关键字" oninput="renderItemMappings(true)"></div><div class="field"><label>匹配状态</label><select class="select" id="mappingFilterStatus" onchange="renderItemMappings(true)"><option value="">全部状态</option><option>已绑定</option></select></div><button class="btn" onclick="resetItemMappingFilters()">重置</button></div><div class="table-wrap"><table class="table item-mapping-table"><thead><tr><th style="width:55px">序号</th><th style="width:150px">来源隐患类型</th><th style="width:170px">来源隐患大类</th><th style="width:190px">来源隐患小类</th><th style="width:150px">来源风险等级</th><th style="width:360px">来源隐患标准条目</th><th style="width:45px">→</th><th style="width:150px">目标隐患类型</th><th style="width:170px">目标隐患大类</th><th style="width:190px">目标隐患小类</th><th style="width:150px">目标风险等级</th><th style="width:360px">目标隐患标准条目</th><th style="width:90px">状态</th><th style="width:90px">更新人</th><th style="width:155px">更新时间</th><th style="width:110px">操作</th></tr></thead><tbody id="itemMappingTable"></tbody></table></div><div class="hazard-pager" id="itemMappingPager"></div></div>`;
+ document.body.insertAdjacentHTML('beforeend',`<div class="item-mapping-mask" id="itemMappingMask" onclick="if(event.target===this)closeItemMappingEditor()"><div class="item-mapping-editor"><div class="item-mapping-head"><h3 id="itemMappingEditorTitle">新增标准匹配</h3><button class="item-mapping-close" onclick="closeItemMappingEditor()" aria-label="关闭">×</button></div><div class="item-mapping-body"><div class="item-mapping-columns">${mappingEditorSideMarkup('Source','来源标准条目')}<div class="item-mapping-arrow">→</div>${mappingEditorSideMarkup('Target','目标标准条目')}</div></div><div class="item-mapping-actions"><button onclick="closeItemMappingEditor()">取消</button><button class="primary" onclick="saveItemMapping()">保存</button></div></div></div>`);
+ seedItemMappings();syncItemMappingFilters();renderItemMappings(true)
+}
+function mappingEditorSideMarkup(side,title){const prefix=`mapping${side}`;return `<section class="item-mapping-side"><h4>${title}</h4><div class="item-mapping-field"><label>${side==='Source'?'来源':'目标'}隐患类型</label><div class="item-mapping-control"><select id="${prefix}Set" onchange="mappingCascade('${side}','Set')"></select></div></div><div class="item-mapping-field"><label>隐患大类</label><div class="item-mapping-control"><select id="${prefix}Category" onchange="mappingCascade('${side}','Category')"></select></div></div><div class="item-mapping-field"><label>隐患小类</label><div class="item-mapping-control"><select id="${prefix}Sub" onchange="mappingCascade('${side}','Sub')"></select></div></div><div class="item-mapping-field"><label>风险等级</label><div class="item-mapping-control"><select id="${prefix}Level" onchange="mappingCascade('${side}','Level')"></select></div></div><div class="item-mapping-field"><label>${side==='Source'?'来源':'目标'}隐患标准条目</label><div class="item-mapping-control"><input id="${prefix}ItemKeyword" placeholder="输入关键字筛选条目" oninput="mappingRefreshItemOptions('${side}')"><select id="${prefix}Item" size="4" onchange="mappingRenderItemPreview('${side}')"></select><div class="item-mapping-preview empty" id="${prefix}Preview">选择条目后展示完整内容</div></div></div></section>`}
+openMappingModal=function(){openItemMappingEditor()};
+renderMappings=function(resetPage=false){renderItemMappings(resetPage)};
+initializeItemMappingPage();
 </script><style>
 .hazard-governance-page{background:#fff;border-radius:4px;padding:18px 16px;min-height:calc(100vh - 78px);box-shadow:0 1px 3px rgba(0,0,0,.04)}.hazard-governance-filter{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;color:#606266;font-size:13px}.hazard-governance-filter input{width:210px;height:32px;border:1px solid #dcdfe6;border-radius:4px;padding:0 10px;color:#606266}.hazard-governance-filter button{height:32px;border:1px solid #dcdfe6;border-radius:4px;background:#fff;color:#606266;padding:0 16px}.hazard-governance-filter button.primary{border-color:#409eff;background:#409eff;color:#fff}.hazard-governance-table{width:100%;min-width:3300px;border-collapse:collapse;table-layout:fixed;color:#606266;font-size:12px}.hazard-governance-table th,.hazard-governance-table td{border:1px solid #ebeef5;padding:11px 10px;text-align:left;vertical-align:top;line-height:1.55;word-break:break-word}.hazard-governance-table th{background:#f5f7fa;font-weight:600;white-space:nowrap}.hazard-governance-table tbody tr:nth-child(even){background:#fafafa}.hazard-governance-table .governance-link{border:0;background:transparent;color:#409eff;padding:0}.hazard-governance-table .governance-code{color:#409eff}.hazard-governance-table .governance-description{white-space:normal}.governance-status{display:inline-flex;align-items:center;justify-content:center;min-width:54px;padding:3px 7px;border-radius:3px}.governance-status.pending{color:#e6a23c;background:#fdf6ec}.governance-status.active{color:#409eff;background:#ecf5ff}.governance-status.done{color:#67c23a;background:#f0f9eb}.governance-status.rejected{color:#f56c6c;background:#fef0f0}@media(max-width:820px){.hazard-governance-filter{align-items:stretch}.hazard-governance-filter input{width:100%}}
 </style><script>
